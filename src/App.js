@@ -1,5 +1,6 @@
 import React, {useState}  from 'react';
 import DisplayWeather from "./components/DisplayWeather"
+import ShowDate from "./components/ShowDate"
 export default function App() {
   const [place, setPlace] = useState('');
   const [weather, setWeather] = useState({});
@@ -26,13 +27,14 @@ export default function App() {
   } 
 
   return (
-    <div className="App">
+    <div className={  (typeof weather.main != "undefined") ? ((Math.round(weather.main.temp - 273.15) > 22) ? "App Warm": "App" ) : "App"  } >
       <main>
         <div className = "search-box">
           <input className="search-bar" onChange ={(e) => setPlace(e.target.value)} value={place} onKeyPress={search_weather} type = "text" placeholder = "Type the place..."/>
         </div>
         <br/>
         <br/> <br/><br/>
+        <ShowDate weather = {weather} />
         <DisplayWeather weather = {weather} erro = {err}   /> 
       </main>
     </div>

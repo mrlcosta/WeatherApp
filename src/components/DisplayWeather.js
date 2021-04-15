@@ -10,17 +10,13 @@ export default function DisplayWeather(props){
           return(
             <section>
 
-              <section className = "date">
-                <p>Monday, april 12/2021</p>
-              </section>
-
               <section className = "celcius-box">
                 <p>{console.log(props.weather[0]) }</p>
                 <p className = "celcius"> {Math.round(props.weather.main.temp - 273.15)}°C </p>
               </section>
 
               <section  className = "location">
-                <p> In {props.weather.name} </p>
+                <p>{props.weather.weather[0].main} in {props.weather.name} </p>
               </section >
 
             </section>
