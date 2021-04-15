@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState}  from 'react';
+import DisplayWeather from "./components/DisplayWeather"
+export default function App() {
+  const [place, setPlace] = useState('');
+  const [weather, setWeather] = useState({});
 
-function App() {
+  const [err,setErr] = useState('');
+  
+  const search_weather = (evt) =>{
+    const API_key = "3de23798cdf41e70de721d4696b661bb";
+    if (evt.key === "Enter"){
+      fetch(`http://api.openweathermap.org/data/2.5/weather?q=${place},uk&APPID=${API_key}`)
+      
+      .catch( setErr("1")) //se der erro, seta erro pra 1
+      
+      .then(res => res.json())
+
+      .then(result => {
+        setPlace("");
+        setErr("0");
+        setWeather(result); 
+        console.log(result);
+      });
+
+    }
+  } 
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <main>
+        <div className = "search-box">
+          <input className="search-bar" onChange ={(e) => setPlace(e.target.value)} value={place} onKeyPress={search_weather} type = "text" placeholder = "Type the place..."/>
+        </div>
+        <br/>
+        <br/> <br/><br/>
+        <DisplayWeather weather = {weather} erro = {err}   /> 
+      </main>
     </div>
   );
 }
 
-export default App;

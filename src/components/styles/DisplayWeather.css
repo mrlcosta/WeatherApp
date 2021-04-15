@@ -1,0 +1,22 @@
+.celcius{
+    font-family: "montseratt", sans-serif;
+    color: rgb(221, 218, 218);
+    opacity: 100%;
+    font-size: 70px;
+    font-weight: 600;
+  }
+  
+  .celcius-box{
+    background-color: rgba(255, 255, 255, 0.15 );
+    padding: 30px;
+    border-radius: 20px;
+    margin: 10px 30%;
+  }
+
+  .location{
+    
+    color: rgb(221, 218, 218);
+    opacity: 90%;
+    font-size: 35px;
+    font-weight: normal;
+  }
