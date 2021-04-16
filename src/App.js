@@ -22,13 +22,13 @@ export default function App() {
         .then((result) => {
           if (result.cod === "200" || result.cod === 200) {
             console.log(result, "oi");
-            setPlace("");
+            //setPlace("");
             setErr("0");
             setWeather(result);
             console.log(result);
-          }
-          {
-            setErr("1");
+          } else {
+            result = setErr("1");
+            setWeather({});
           }
         });
     }
